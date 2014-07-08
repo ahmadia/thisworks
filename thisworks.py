@@ -5,7 +5,7 @@ import os
 import sys
 import socket
 import time
-from subprocess import Popen, PIPE, STDOUT, CalledProcessError
+from subprocess import Popen, PIPE, STDOUT
 from itertools import dropwhile
 from IPython.core.magic import magics_class, cell_magic, Magics
 
@@ -49,7 +49,7 @@ def call_buffered(cmd, **kwargs):
     buffer_output(process)
 
     if process.returncode != 0:
-        raise CalledProcessError("%s failed with status %i" % (cmd[0], process.returncode))
+        raise Exception("%s failed with status %i" % (cmd[0], process.returncode))
 
 
 def assemble_hashstack(command, profile_contents):
