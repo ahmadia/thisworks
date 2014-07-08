@@ -21,7 +21,7 @@ def assemble_hashstack(command, profile_contents):
     """Convert friendly thisworks format to hashstack profile"""
 
     if command.startswith('hashstack/'):
-        git_id = command.lstrip('hashstack/').rstrip()
+        git_id = command.split('hashstack/')[1].rstrip()
     else:
         raise Exception("Unknown using command: ", command)
 
@@ -41,7 +41,7 @@ def transform_using(profile_contents):
     first_line = non_empty_lines.next().lstrip()
     if first_line.startswith('using'):
         # dispatch to other build profile providers here
-        command = first_line.lstrip('using').lstrip().lstrip(':').lstrip()
+        command = first_line.split('using')[1].lstrip().split(':')[1].lstrip()
         profile_contents = assemble_hashstack(command, list(non_empty_lines))
     return profile_contents
 
