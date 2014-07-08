@@ -22,7 +22,7 @@ extends:
 
 REDIRECT_TEMPLATE = """
 // disable 'unsaved changes' dialog
-window.onbeforeunload = function () {{}};
+window.onbeforeunload = function () {{return "You are about to be redirected to your thisworks profile"}};
 window.location = "{url}";
 """
 
